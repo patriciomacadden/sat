@@ -19,9 +19,13 @@ module SAT::Application
       builder.map(value) { run controller }
     end
 
+    def self.views_prefix=(value)
+      define_singleton_method(:views_prefix) { value }
+    end
+
     def find_template(views, name, engine, &block)
-      super(File.join(views, settings.views_prefix), name, engine, &block)
-      super(File.join(views, settings.prefix), name, engine, &block)
+      super(File.join(views, settings.views_prefix), name, engine, &block) if settings.respond_to? :views_prefix
+      super(File.join(views, settings.prefix), name, engine, &block) if settings.respond_to? :prefix
       super(File.join(views, 'application'), name, engine, &block)
     end
   end
