@@ -95,9 +95,9 @@ end
 
 Two settings are introduced:
 
-* prefix: It indicates where to map a controller. **Must** be used in every
+* `prefix`: It indicates where to map a controller. **Must** be used in every
 controller.
-* views_prefix: It indicates where to find the views. If not set, `prefix` is
+* `views_prefix`: It indicates where to find the views. If not set, `prefix` is
 used to find the views.
 
 ## Contributing
