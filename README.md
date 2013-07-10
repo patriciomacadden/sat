@@ -100,6 +100,22 @@ controller.
 * `views_prefix`: It indicates where to find the views. If not set, `prefix` is
 used to find the views.
 
+## Caveats
+
+Since the application itself its a `Rack::Builder` that maps the different
+controllers to a particular path, you need to use that builder to use any rack
+middleware.
+
+See an example:
+
+```ruby
+# in environment.rb:
+
+config.builder.use Rack::Auth::Basic do |username, password|
+  username == 'admin' && password == 'secret'
+end
+```
+
 ## Contributing
 
 1. Fork it
