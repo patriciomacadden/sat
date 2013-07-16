@@ -8,6 +8,7 @@
 * Per-environment configuration in separated files.
 * Separate routes in controllers.
 * Separated directories for controllers' views.
+* Per-controller helpers.
 * [sinatra-contrib](https://github.com/sinatra/sinatra)
 * [sinatra-partial](https://github.com/yb66/Sinatra-Partial)
 * [i18n](https://github.com/svenfuchs/i18n).
@@ -64,6 +65,16 @@ module SAT::Application
 end
 ```
 
+* Create `app/helpers/products_helpers.rb`
+
+```ruby
+module SAT::Application
+  module ProductsHelpers
+    # helper methods
+  end
+end
+```
+
 * Create the views directory
 
 ```bash
@@ -87,6 +98,20 @@ describe SAT::Application::ProductsController do
       get '/products'
       last_response.must_be :ok?
     end
+  end
+end
+```
+
+* Create `spec/helpers/products_helpers_spec.rb`
+
+```ruby
+require 'minitest_helper'
+
+describe SAT::Application::ProductsHelpers do
+  include Rack::Test::Methods
+
+  def app
+    SAT::Application
   end
 end
 ```

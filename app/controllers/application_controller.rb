@@ -3,6 +3,8 @@ module SAT::Application
     set builder: Rack::Builder.new
     set controllers: []
 
+    helpers SAT::Application::ApplicationHelpers
+
     def self.inherited(subclass)
       controllers << subclass unless controllers.include? subclass
       subclass.set :app_file, caller_files.detect { |f| f != app_file }
