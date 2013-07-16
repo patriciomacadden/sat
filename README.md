@@ -4,7 +4,7 @@
 
 ## Features
 
-* Sinatra modular application. Inspired in [travis-admin](https://github.com/travis-ci/travis-admin).
+* Sinatra modular application. Inspired by [travis-admin](https://github.com/travis-ci/travis-admin).
 * Per-environment configuration in separated files.
 * Separate routes in controllers.
 * Separated directories for controllers' views.
