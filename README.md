@@ -8,7 +8,7 @@
 * Per-environment configuration in separated files.
 * Separate routes in controllers.
 * Separated directories for controllers' views.
-* Per-controller helpers.
+* Common helpers and per-controller helpers.
 * [sinatra-contrib](https://github.com/sinatra/sinatra)
 * [sinatra-partial](https://github.com/yb66/Sinatra-Partial)
 * [i18n](https://github.com/svenfuchs/i18n).
@@ -140,6 +140,12 @@ config.builder.use Rack::Auth::Basic do |username, password|
   username == 'admin' && password == 'secret'
 end
 ```
+
+## Testing
+
+To run the `spec` tests simply run
+
+    rake
 
 ## Contributing
 
