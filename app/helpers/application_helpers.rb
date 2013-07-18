@@ -3,5 +3,10 @@
 
 module SAT::Application
   module ApplicationHelpers
+  
+    def hello_world
+      return "Hello World"
+    end
+    
   end
 end
