@@ -18,4 +18,5 @@ end
 group :test do
   gem 'minitest', require: 'minitest/autorun'
   gem 'rack-test', require: 'rack/test'
+  gem 'simplecov', :require => false
 end
