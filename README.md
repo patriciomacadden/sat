@@ -15,6 +15,7 @@
 * [minitest](https://github.com/seattlerb/minitest).
 * [rack-test](https://github.com/brynary/rack-test).
 * [slim](https://github.com/slim-template/slim).
+* [sprockets](https://github.com/sstephenson/sprockets) for sass and minifying javascripts (and it's easy to add coffescript etc)
 * [thin](https://github.com/macournoyer/thin).
 
 ## Installation
