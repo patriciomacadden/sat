@@ -2,4 +2,4 @@ en:
   views:
     root:
       index:
-        title: Hello World
+        title: Hello Local World
