@@ -1,3 +1,6 @@
+#!/user/bin/env ruby
+#coding: utf-8
+
 module SAT::Application
   class ApplicationController < Sinatra::Base
     set builder: Rack::Builder.new
