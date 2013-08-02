@@ -9,6 +9,7 @@
 * Separate routes in controllers.
 * Separated directories for controllers' views.
 * Per-controller helpers.
+* Initializers support.
 * [sinatra-contrib](https://github.com/sinatra/sinatra)
 * [sinatra-partial](https://github.com/yb66/Sinatra-Partial)
 * [i18n](https://github.com/svenfuchs/i18n).
