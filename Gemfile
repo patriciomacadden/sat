@@ -9,6 +9,7 @@ gem 'sinatra-contrib'
 # gem 'sinatra-contrib', github: 'sinatra/sinatra-contrib'
 gem 'sinatra-partial'
 gem 'slim'
+gem 'sprockets'
 gem 'thin'
 
 group :development, :test do

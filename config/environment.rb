@@ -29,8 +29,13 @@ SAT::Application.configure do |config|
   # show exceptions
   config.enable :show_exceptions
 
-  # static files
-  config.enable :static
+  # sprockets
+  map '/assets' do
+    environment = Sprockets::Environment.new
+    environment.append_path File.join(config.root, 'app', 'assets', 'javascripts')
+    environment.append_path File.join(config.root, 'app', 'assets', 'stylesheets')
+    run environment
+  end
 
   # template engine
   config.set :slim, layout_engine: :slim, layout: '../layouts/application'.to_sym
