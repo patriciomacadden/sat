@@ -30,7 +30,7 @@ SAT::Application.configure do |config|
   config.enable :show_exceptions
 
   # sprockets
-  map '/assets' do
+  config.builder.map '/assets' do
     environment = Sprockets::Environment.new
     environment.append_path File.join(config.root, 'app', 'assets', 'javascripts')
     environment.append_path File.join(config.root, 'app', 'assets', 'stylesheets')
