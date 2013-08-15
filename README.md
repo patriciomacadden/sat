@@ -16,6 +16,7 @@
 * [minitest](https://github.com/seattlerb/minitest).
 * [rack-test](https://github.com/brynary/rack-test).
 * [slim](https://github.com/slim-template/slim).
+* [sprockets](https://github.com/sstephenson/sprockets).
 * [thin](https://github.com/macournoyer/thin).
 
 ## Installation
