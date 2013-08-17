@@ -1,0 +1,87 @@
+#!/usr/bin/env ruby
+
+require 'trollop'
+
+class App
+  @@version = "SAT Command Line Interface 0.1.0"
+  @@usage = <<-EOS
+Command line interface for the Sinatra Application Template
+
+Usage:
+       sat [options] <app_name>
+
+options:
+EOS
+
+  def initialize(args)
+    parse_options!
+    @name = args.first
+    validate!
+    @name = @name.downcase
+  end
+
+  def parse_options!
+    @options = Trollop::options do
+      version @@version
+      banner @@usage
+
+      opt :git,      '(optional) Git reposotory where new app wil be versioned.', type: String
+      opt :template, '(optional) Git repository url of template to use.', default: 'https://github.com/patriciomacadden/sat'
+    end
+  end
+
+  def validate!
+    if @name.nil? || @name.empty?
+      Trollop::die :name, "You must specify the new application name"
+    end
+  end
+
+  def run
+    clone_template
+    Dir.chdir(@name)
+    fix_origin
+    clean_readme
+    rename_app
+    bundle_install
+
+    puts "Done! your shiny new app is in #{@name.downcase}"
+  end
+
+  def clone_template
+    exec "Aquiring template application from: #{@options[:template]}", "git clone #{@options[:template]} #{@name}"
+  end
+
+  def fix_origin
+    exec('fixing git origin...', 'git remote rm origin')
+    exec("new origin set to #{@options[:git]}", "git remote add origin #{@options[:git]}") if @options[:git]
+  end
+
+  def clean_readme
+    File.write('./README.md', "# #{@name}")
+  end
+
+  def rename_app
+    @name = @name.split('_').collect{|s| s.capitalize!}.join #ensure the is a valid ruby class name
+
+    exec("renaming project to #{@name}...") do
+      Dir.glob('**/*').reject {|f| Dir.exists? f }.each {|path| File.write(path, replace_app_name(File.read(path))) }
+    end
+  end
+
+  def bundle_install
+    exec 'installing your gem bundle...', 'bundle install'
+  end
+
+  private
+  def replace_app_name(str)
+    str.gsub('SAT', @name)
+  end
+
+  def exec(message, task = nil, &block)
+    puts message
+      `#{task}` if task
+      block.call if block_given?
+  end
+end
+
+App.new(ARGV).run
