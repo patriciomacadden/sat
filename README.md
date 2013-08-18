@@ -21,6 +21,23 @@
 
 ## Installation
 
+### using sat gem
+To generate a new app you need to install the sat gem:
+
+```bash
+$ gem install sat
+$ sat <new_app_name>
+```
+
+possible options are:
+
+* --template <git_url>: Specify the url of the Git repo of the template
+* --git <git_url>: If a git repository is specified, it will initialize a new Git repository for your project and the url added as origin.
+* --no-bundler:  Do not run ```bundle install``` (by default, will be run)
+
+
+### manual install
+
 * Clone the repository:
 
 ```bash
@@ -40,8 +57,8 @@ $ git remote add origin <YOUR_GIT_REPOSITORY>
 $ APP_NAME=AwesomeApp; for i in `find . -type f | grep -v .git`; do if [ `grep SAT $i | wc -l` != 0 ]; then sed -i '' "s/SAT/$APP_NAME/g" $i; fi; done; git commit -am "SAT => $APP_NAME"
 ```
 
-**Note**: Note the `APP_NAME` variable. You should change the application name
-there.
+**Note**: Note the `APP_NAME` variable. You should change the application name there.
+
 
 ## Creating a new controller
 
@@ -52,19 +69,20 @@ Let's create a controller for handling products.
 ```ruby
 module SAT::Application
   class ProductsController < ApplicationController
-    set prefix: '/products'
-    # views will be found in app/views/products directory.
-    # If you want to change the views directory, use this
-    # configuration option.
-    # set views_prefix: '/some_other_directory'
+      set prefix: '/products'
+          # views will be found in app/views/products directory.
+              # If you want to change the views directory, use this
+                  # configuration option.
+                      # set views_prefix: '/some_other_directory'
 
     get '/' do
-      # will render app/views/products/index.slim
-      # slim :index
-      'Hello World'
-    end
-  end
-end
+          # will render app/views/products/index.slim
+                # slim :index
+                      'Hello World'
+                          end
+                            end
+                            end
+                    
 ```
 
 * Create `app/helpers/products_helpers.rb`
@@ -102,6 +120,7 @@ describe SAT::Application::ProductsController do
     end
   end
 end
+
 ```
 
 * Create `spec/helpers/products_helpers_spec.rb`
@@ -116,6 +135,7 @@ describe SAT::Application::ProductsHelpers do
     SAT::Application
   end
 end
+
 ```
 
 ## Custom settings
