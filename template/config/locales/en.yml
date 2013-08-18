@@ -1,0 +1,5 @@
+en:
+  views:
+    root:
+      index:
+        title: Hello World
