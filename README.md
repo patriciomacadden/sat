@@ -69,7 +69,6 @@ Let's create a controller for handling products.
 ```ruby
 module SAT::Application
   class ProductsController < ApplicationController
-<<<<<<< HEAD
       set prefix: '/products'
           # views will be found in app/views/products directory.
               # If you want to change the views directory, use this
@@ -83,40 +82,18 @@ module SAT::Application
                           end
                             end
                             end
-                            ```
-=======
-    set prefix: '/products'
-    # views will be found in app/views/products directory.
-    # If you want to change the views directory, use this
-    # configuration option.
-    # set views_prefix: '/some_other_directory'
-
-    get '/' do
-      # will render app/views/products/index.slim
-      # slim :index
-      'Hello World'
-    end
-  end
-end
+                    
 ```
->>>>>>> e252818262d8d313672aeebdb77146de390c3fcd
 
 * Create `app/helpers/products_helpers.rb`
 
 ```ruby
 module SAT::Application
   module ProductsHelpers
-<<<<<<< HEAD
-      # helper methods
-        end
-        end
-        ```
-=======
     # helper methods
   end
 end
 ```
->>>>>>> e252818262d8d313672aeebdb77146de390c3fcd
 
 * Create the views directory
 
@@ -133,19 +110,6 @@ describe SAT::Application::ProductsController do
   include Rack::Test::Methods
 
   def app
-<<<<<<< HEAD
-      SAT::Application
-        end
-
-  describe 'GET /products' do
-      it 'must be ok' do
-            get '/products'
-                  last_response.must_be :ok?
-                      end
-                        end
-                        end
-                        ```
-=======
     SAT::Application
   end
 
@@ -156,8 +120,8 @@ describe SAT::Application::ProductsController do
     end
   end
 end
+
 ```
->>>>>>> e252818262d8d313672aeebdb77146de390c3fcd
 
 * Create `spec/helpers/products_helpers_spec.rb`
 
@@ -168,17 +132,11 @@ describe SAT::Application::ProductsHelpers do
   include Rack::Test::Methods
 
   def app
-<<<<<<< HEAD
-      SAT::Application
-        end
-        end
-        ```
-=======
     SAT::Application
   end
 end
+
 ```
->>>>>>> e252818262d8d313672aeebdb77146de390c3fcd
 
 ## Custom settings
 
@@ -202,13 +160,8 @@ See an example:
 
 config.builder.use Rack::Auth::Basic do |username, password|
   username == 'admin' && password == 'secret'
-<<<<<<< HEAD
-  end
-  ```
-=======
 end
 ```
->>>>>>> e252818262d8d313672aeebdb77146de390c3fcd
 
 ## Contributing
 
