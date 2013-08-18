@@ -1,0 +1,98 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/sat/version'
+require 'trollop'
+require 'pathname'
+require 'tmpdir'
+
+class App
+  @@version = "SAT Command Line Interface " << Sat::VERSION
+  @@usage = <<-EOS
+Command line interface for the Sinatra Application Template
+
+Usage:
+       sat [options] <app_name>
+
+options:
+EOS
+
+  def initialize(args)
+    parse_options!
+    @name = args.first
+    validate!
+    @name = @name.downcase
+  end
+
+  def run
+    clone_template
+    rename
+    git_setup if @options[:git]
+    install_bundle unless @options[:no_bundler]
+
+    puts "Done! your new app is in #{@name.downcase}"
+  end
+
+  private
+  def parse_options!
+    @options = Trollop::options do
+      version @@version
+      banner @@usage
+
+      opt :git,        'Git reposotory where new app will be versioned.', type: String
+      opt :template,   'Git repository url of template to use.', default: 'https://github.com/patriciomacadden/sat'
+      opt :no_bundler,  "If specified, after processing template 'bundle install' won't be run"
+    end
+  end
+
+  def validate!
+    if @name.nil? || @name.empty?
+      Trollop::die "You must specify the new application name"
+    end
+  end
+
+  def clone_template
+    tmp = Pathname.new(Dir.tmpdir).join @name
+    exec "Aquiring template application from: #{@options[:template]}", "git clone #{@options[:template]} #{tmp}"
+    exec "Deploying template..." do
+      FileUtils.mv(tmp.join('template'), @name)
+      FileUtils.cd(@name)
+    end
+  end
+
+  def rename
+    exec("renaming project...") do
+      all_files.each {|path| replace_name(path, camelize(@name)) }
+    end
+  end
+
+  def git_setup
+    exec('Initializing Git...', 'git init')
+    exec("Git origin set to #{@options[:git]}", "git remote add origin #{@options[:git]}")
+  end
+
+  def install_bundle
+    exec('installing your gem bundle...', 'bundle install')
+  end
+
+  def exec(message, task = nil, &block)
+    puts message
+      `#{task}` if task
+      block.call if block_given?
+  end
+
+  def replace_name(path, name)
+    contents = File.read(path)
+    template = 'SAT'
+    File.write(path, File.read(path).gsub(template, name)) if contents.include? template
+  end
+
+  def all_files
+    Dir.glob('**/*').reject {|file| Dir.exists? file }
+  end
+
+  def camelize(str)
+    str.split('_').collect{ |s| s.capitalize! }.join
+  end
+end
+
+App.new(ARGV).run
