@@ -19,7 +19,27 @@
 * [sprockets](https://github.com/sstephenson/sprockets).
 * [thin](https://github.com/macournoyer/thin).
 
-## Installation
+## Install
+
+For generating new projects with  SAT you can use ```sat gem``` or do a manual install.
+
+### Using the sat gem
+
+Simply run:
+
+```bash
+$ gem install sat
+$ sat <new_app_name>
+```
+
+Available options are:
+
+* **--template <git_url>**: clone template from the specified repository.
+* **--git <git_url>**: if specified, a new git repository will be setup for your project with its origin set to __<git_url>__.
+* **--no-bundler**: switch to disable calling __bundle install__ after cloning the template.
+
+
+### Manual install
 
 * Clone the repository:
 
