@@ -19,16 +19,17 @@
 * [sprockets](https://github.com/sstephenson/sprockets).
 * [thin](https://github.com/macournoyer/thin).
 
-## Install
+## Installation
 
-For generating new projects with  SAT you can use ```sat gem``` or do a manual install.
-
-### Using the sat gem
-
-Simply run:
+* Install the `sat` gem
 
 ```bash
 $ gem install sat
+```
+
+* Generate a new application
+
+```bash
 $ sat <new_app_name>
 ```
 
@@ -37,31 +38,6 @@ Available options are:
 * **--template <git_url>**: clone template from the specified repository.
 * **--git <git_url>**: if specified, a new git repository will be setup for your project with its origin set to __<git_url>__.
 * **--no-bundler**: switch to disable calling __bundle install__ after cloning the template.
-
-
-### Manual install
-
-* Clone the repository:
-
-```bash
-$ git clone git@github.com:patriciomacadden/sat.git
-```
-
-* Create a git repository and change the `origin`:
-
-```bash
-$ git remote rm origin
-$ git remote add origin <YOUR_GIT_REPOSITORY>
-```
-
-* Change the application name (and commit the change):
-
-```bash
-$ APP_NAME=AwesomeApp; for i in `find . -type f | grep -v .git`; do if [ `grep SAT $i | wc -l` != 0 ]; then sed -i '' "s/SAT/$APP_NAME/g" $i; fi; done; git commit -am "SAT => $APP_NAME"
-```
-
-**Note**: Note the `APP_NAME` variable. You should change the application name
-there.
 
 ## Creating a new controller
 

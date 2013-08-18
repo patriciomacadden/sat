@@ -1,4 +1,4 @@
-Copyright (c) 2013 Fernando Martinez
+Copyright (c) 2013 Patricio Mac Adden, Fernando Martinez
 
 MIT License
 
