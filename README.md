@@ -21,6 +21,7 @@
 
 ## Installation
 
+### using sat gem
 To generate a new app you need to install the sat gem:
 
 ```bash
@@ -35,6 +36,30 @@ possible options are:
 * --no-bundler:  Do not run ```bundle install``` (by default, will be run)
 
 
+### manual install
+
+* Clone the repository:
+
+```bash
+$ git clone git@github.com:patriciomacadden/sat.git
+```
+
+* Create a git repository and change the `origin`:
+
+```bash
+$ git remote rm origin
+$ git remote add origin <YOUR_GIT_REPOSITORY>
+```
+
+* Change the application name (and commit the change):
+
+```bash
+$ APP_NAME=AwesomeApp; for i in `find . -type f | grep -v .git`; do if [ `grep SAT $i | wc -l` != 0 ]; then sed -i '' "s/SAT/$APP_NAME/g" $i; fi; done; git commit -am "SAT => $APP_NAME"
+```
+
+**Note**: Note the `APP_NAME` variable. You should change the application name there.
+
+
 ## Creating a new controller
 
 Let's create a controller for handling products.
@@ -44,6 +69,7 @@ Let's create a controller for handling products.
 ```ruby
 module SAT::Application
   class ProductsController < ApplicationController
+<<<<<<< HEAD
       set prefix: '/products'
           # views will be found in app/views/products directory.
               # If you want to change the views directory, use this
@@ -58,16 +84,39 @@ module SAT::Application
                             end
                             end
                             ```
+=======
+    set prefix: '/products'
+    # views will be found in app/views/products directory.
+    # If you want to change the views directory, use this
+    # configuration option.
+    # set views_prefix: '/some_other_directory'
+
+    get '/' do
+      # will render app/views/products/index.slim
+      # slim :index
+      'Hello World'
+    end
+  end
+end
+```
+>>>>>>> e252818262d8d313672aeebdb77146de390c3fcd
 
 * Create `app/helpers/products_helpers.rb`
 
 ```ruby
 module SAT::Application
   module ProductsHelpers
+<<<<<<< HEAD
       # helper methods
         end
         end
         ```
+=======
+    # helper methods
+  end
+end
+```
+>>>>>>> e252818262d8d313672aeebdb77146de390c3fcd
 
 * Create the views directory
 
@@ -84,6 +133,7 @@ describe SAT::Application::ProductsController do
   include Rack::Test::Methods
 
   def app
+<<<<<<< HEAD
       SAT::Application
         end
 
@@ -95,6 +145,19 @@ describe SAT::Application::ProductsController do
                         end
                         end
                         ```
+=======
+    SAT::Application
+  end
+
+  describe 'GET /products' do
+    it 'must be ok' do
+      get '/products'
+      last_response.must_be :ok?
+    end
+  end
+end
+```
+>>>>>>> e252818262d8d313672aeebdb77146de390c3fcd
 
 * Create `spec/helpers/products_helpers_spec.rb`
 
@@ -105,10 +168,17 @@ describe SAT::Application::ProductsHelpers do
   include Rack::Test::Methods
 
   def app
+<<<<<<< HEAD
       SAT::Application
         end
         end
         ```
+=======
+    SAT::Application
+  end
+end
+```
+>>>>>>> e252818262d8d313672aeebdb77146de390c3fcd
 
 ## Custom settings
 
@@ -132,8 +202,13 @@ See an example:
 
 config.builder.use Rack::Auth::Basic do |username, password|
   username == 'admin' && password == 'secret'
+<<<<<<< HEAD
   end
   ```
+=======
+end
+```
+>>>>>>> e252818262d8d313672aeebdb77146de390c3fcd
 
 ## Contributing
 
