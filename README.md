@@ -14,7 +14,6 @@
 * [i18n](https://github.com/svenfuchs/i18n).
 * [minitest](https://github.com/seattlerb/minitest).
 * [rack-test](https://github.com/brynary/rack-test).
-* [slim](https://github.com/slim-template/slim).
 * [thin](https://github.com/macournoyer/thin).
 
 ## Installation
@@ -57,8 +56,8 @@ module SAT::Application
     # set views_prefix: '/some_other_directory'
 
     get '/' do
-      # will render app/views/products/index.slim
-      # slim :index
+      # will render app/views/products/index.erb
+      # erb :index
       'Hello World'
     end
   end

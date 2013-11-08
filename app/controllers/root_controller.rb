@@ -6,7 +6,7 @@ module SAT::Application
     helpers SAT::Application::RootHelpers
 
     get '/' do
-      slim :index
+      erb :index
     end
   end
 end

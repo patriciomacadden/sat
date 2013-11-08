@@ -20,7 +20,7 @@ SAT::Application.configure do |config|
 
   # partial
   config.register Sinatra::Partial
-  config.set :partial_template_engine, :slim
+  config.set :partial_template_engine, :erb
   config.enable :partial_underscores
 
   # sessions
@@ -38,5 +38,5 @@ SAT::Application.configure do |config|
   end
 
   # template engine
-  config.set :slim, layout_engine: :slim, layout: '../layouts/application'.to_sym
+  config.set :erb, layout_engine: :erb, layout: '../layouts/application'.to_sym
 end

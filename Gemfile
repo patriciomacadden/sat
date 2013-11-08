@@ -8,7 +8,6 @@ gem 'sinatra-contrib'
 # or use master:
 # gem 'sinatra-contrib', github: 'sinatra/sinatra-contrib'
 gem 'sinatra-partial'
-gem 'slim'
 gem 'sprockets'
 gem 'thin'
 
