@@ -17,7 +17,7 @@ module SAT
     Dir[File.join('config', 'environments', '**/*.rb')].each { |file| require File.expand_path(file) }
 
     # require the application's initializers
-    Dir[File.join('config', 'initializer', '**/*.rb')].each { |file| require File.expand_path(file) }
+    Dir[File.join('config', 'initializers', '**/*.rb')].each { |file| require File.expand_path(file) }
     # require the rest of the helpers
     Dir[File.join('app', 'helpers', '**/*.rb')].each { |file| require File.expand_path(file) }
     # require the rest of the controllers
