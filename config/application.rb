@@ -22,7 +22,7 @@ module SAT
     Dir[File.join('app', 'helpers', '**/*.rb')].each { |file| require File.expand_path(file) }
     # require the rest of the controllers
     Dir[File.join('app', 'controllers', '**/*.rb')].each { |file| require File.expand_path(file) }
-    # require the rest of the models
+    # require the models
     Dir[File.join('app', 'models', '**/*.rb')].each { |file| require File.expand_path(file) }
   end
 end
